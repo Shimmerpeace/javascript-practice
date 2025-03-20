@@ -5,7 +5,7 @@ let count = localStorage.getItem("count")
   : 0;
 
 // Initialize the counter display
-counter.innerHTML = count;
+counter.textContent = count;
 
 function increase() {
   count += 1;
