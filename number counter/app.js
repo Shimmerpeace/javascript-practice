@@ -23,7 +23,7 @@ function decrease() {
 }
 
 function updateCounter() {
-  counter.innerHTML = count;
+  counter.textContent = count;
   localStorage.setItem("count", count);
 }
 
