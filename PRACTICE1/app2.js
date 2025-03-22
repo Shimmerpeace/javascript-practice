@@ -23,9 +23,11 @@ function decrease() {
   updateCounter();
 }
 
+// Local storage allows data to persist even after the browser window is closed. 
 function updateCounter() {
   counter2.textContent = count2;
-  localStorage.setItem("count2", count2);
+  localStorage.setItem("count2", count2); //saves the current value of count2 to the browser's local storage
+  //The data is stored as a key-value pair, where "count2" is the key, and the value of the count2 variable is the value.
 }
 
 localStorage.setItem("username", "JaneDoe");

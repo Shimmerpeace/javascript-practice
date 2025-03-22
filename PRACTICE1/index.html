@@ -17,18 +17,30 @@
         margin-bottom: 20px;
       }
 
-      #div1,  #div2, .welcome-message {
+      #div1, 
+      #div2, 
+      .welcome-message, 
+      #img-container,
+      #calculator {
         background-color: cornsilk;
         
       }
-        
+       img {
+        padding: 10px;
+        border-radius: 20px;
+       } 
+
+      p {
+        font-weight: bold;
+      }
+
       button {
         border: none;
         padding-top: 10px;
         padding-bottom: 10px;
         color: white;
         font-weight: bold;
-        width: 100px;
+        width: 150px;
         margin-bottom: 5px;
         border-radius: 5px;
         font-size: 20px;
@@ -39,15 +51,15 @@
   </head>
   <body>
     <div id="div1">
-      <h1>Number of oranges in each basket</h1>
+      <h1>TOTAL ORANGES IN EACH BASKET</h1>
       <h2 id="counter1">0</h2>
       <button id="increase1" onclick="increase1()">Increase</button>
       <button id="save-btn" onclick="save()">Save</button>
-      <p id="saveParagraph">Previous entries:</p>
+      <p id="saveParagraph">Previous entries: </p>
     </div>
 
     <div id="div2">
-      <h1>Counting Numbers</h1>
+      <h1>COUNTDOWN</h1>
       <h2 id="counter2">0</h2>
       <button id="increase2" onclick="increase2()">Increase</button>
       <button id="reset" onclick="reset()">Reset</button>
@@ -59,6 +71,27 @@
       <p id="welcome-text"></p>
     </div>
 
+    <div id="img-container">
+      <h1>SHOE SALES</h1>
+      <img src="shoe.jpeg" alt="men shoes" width="200px" height="200px">
+      <p>Best shoe</p>
+      <button onclick="purchase()">Purchase - $200</button>
+      <p id="error"></p>
+    </div>
+
+    <div id="calculator">
+      <h1>CALCULATOR</h1>
+      <span id="num1"></span>
+      <span id="num2"></span>
+      <br/>
+      <button onclick="add()">Add</button>
+      <button onclick="substract()">Substract</button>
+      <button onclick="divide()">Divide</button>
+      <button onclick="multiply()">Multiply</button>
+      <br/>
+      <span id="sum-span">Sum: </span>
+      
+    </div>
     <script src="app1.js"></script>
     <script src="app2.js"></script>
   </body>
