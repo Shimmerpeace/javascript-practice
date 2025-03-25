@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8" />
+    <title>Simple TASK MANAGEMENT APPLICATION</title>
+    <style></style>
+  </head>
+
+  <body>
+    <h1>Task Management Tool</h1>
+
+    <input type="text" id="inputTaskID" placeholder="Waiting for a task..." />
+    <button id="addTaskBtn">Submit</button>
+
+    <div>
+      <ul id="taskList"></ul>
+    </div>
+
+    <script>
+      const inputTask = document.getElementById("inputTaskID");
+      const addTaskBtn = document.getElementById("addTaskBtn");
+      const taskList = document.getElementById("taskList");
+
+      addTaskBtn.addEventListener("click", addTask);
+      function addTask() {
+        //const inputTaskValue = inputTask.value.trim();
+        const inputTaskValue = inputTask.value;
+        console.log(inputTaskValue);
+
+        if (inputTaskValue) {
+          const eachTaskList = document.createElement("li");
+          eachTaskList.textContent = inputTaskValue;
+          taskList.appendChild(eachTaskList);
+          inputTask.value = "";
+        } else {
+          alert("Please enter a task!");
+        }
+
+        //save task in local storage
+        const storedTask = localStorage.setItem("savedInput", inputTaskValue);
+        if (storedTask) {
+          console.log("Task input saved to local storage");
+        }
+        //retrieve task from local storage
+        const retrievedTask = localStorage.getItem("savedTaskInput");
+        if (retrievedTask) {
+          console.log("Task input retrieve from local storage");
+        }
+      }
+
+      
+// Optional: Add an event listener for the Enter key in the input field
+inputTask.addEventListener('keypress', function(event) {
+  if (event.key === 'Enter') {
+    addTask();
+  }
+});
+
+    </script>
+  </body>
+</html>

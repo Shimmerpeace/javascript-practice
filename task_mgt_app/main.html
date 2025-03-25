@@ -9,15 +9,17 @@
   <body>
     <h1>Task Management Tool</h1>
 
-    <form class="taskForm">
+    <div class="task-container">
       <input type="text" id="inputTaskID" placeholder="Waiting for a task..." />
-      <button id="submitBtn">Submit</button>
-      <button>Remove task</button>
-    </form>
-    <div>
-        <ul id="List"></ul>
+      <button id="addTaskBtn">Submit Task</button>
+
+      <div>
+        <ul id="task-list">
+           <!-- List items will be added here dynamically -->
+        </ul>
+      </div>
     </div>
-    <p>Task completed</p>
+
     <script src="main.js"></script>
   </body>
 </html>

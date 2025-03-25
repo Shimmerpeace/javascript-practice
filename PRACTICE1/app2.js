@@ -26,7 +26,7 @@ function decrease() {
 // Local storage allows data to persist even after the browser window is closed. 
 function updateCounter() {
   counter2.textContent = count2;
-  localStorage.setItem("count2", count2); //saves the current value of count2 to the browser's local storage
+  localStorage.setItem("count2", count2.toString()); //saves the current value of count2 to the browser's local storage
   //The data is stored as a key-value pair, where "count2" is the key, and the value of the count2 variable is the value.
 }
 
@@ -37,3 +37,9 @@ if (username !== null) {
 } else {
   console.log("no value in localStorage");
 }
+/*
+const person = {myName: "peace", age: 25};
+localStorage.setItem("person", JSON.stringify(person));
+const personString = localStorage.getItem("person");
+JSON.parse(personString);
+*/
