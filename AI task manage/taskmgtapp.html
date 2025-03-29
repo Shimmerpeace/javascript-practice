@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Management App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .app-container {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+      }
+
+      h1 {
+        text-align: center;
+        font-size: 1.8em;
+        margin-bottom: 20px;
+      }
+
+      .task-input {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+
+      #taskInput {
+        width: 80%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      #addTaskButton {
+        padding: 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      #addTaskButton:hover {
+        background-color: #45a049;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+      }
+
+      li.completed {
+        text-decoration: line-through;
+        color: gray;
+      }
+
+      button.delete-btn {
+        background-color: red;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      button.delete-btn:hover {
+        background-color: #d9534f;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container">
+      <h1>Task Management</h1>
+      <div class="task-input">
+        <input type="text" id="taskInput" placeholder="Enter a new task..." />
+        <button id="addTaskButton">Add Task</button>
+      </div>
+      <ul id="taskList"></ul>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const taskInput = document.getElementById("taskInput");
+        const addTaskButton = document.getElementById("addTaskButton");
+        const taskList = document.getElementById("taskList");
+
+        // Load tasks from localStorage
+        loadTasks();
+
+        // Add new task
+        addTaskButton.addEventListener("click", () => {
+          const taskText = taskInput.value.trim();
+
+          if (taskText) {
+            const task = {
+              text: taskText,
+              completed: false,
+            };
+
+            addTaskToDOM(task);
+            saveTaskToLocalStorage(task);
+            taskInput.value = ""; // Clear the input field
+          }
+        });
+
+        // Toggle task completion
+        taskList.addEventListener("click", (e) => {
+          if (e.target.tagName === "LI") {
+            const taskElement = e.target;
+            const taskId = taskElement.dataset.id;
+            toggleTaskCompletion(taskId);
+          }
+        });
+
+        // Delete task
+        taskList.addEventListener("click", (e) => {
+          if (e.target.classList.contains("delete-btn")) {
+            const taskElement = e.target.closest("li");
+            const taskId = taskElement.dataset.id;
+            deleteTask(taskId);
+          }
+        });
+
+        // Save task to localStorage
+        function saveTaskToLocalStorage(task) {
+          const tasks = getTasksFromLocalStorage();
+          tasks.push(task);
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+
+        // Get tasks from localStorage
+        function getTasksFromLocalStorage() {
+          const tasks = localStorage.getItem("tasks");
+          return tasks ? JSON.parse(tasks) : [];
+        }
+
+        // Load tasks from localStorage to DOM
+        function loadTasks() {
+          const tasks = getTasksFromLocalStorage();
+          tasks.forEach((task) => addTaskToDOM(task));
+        }
+
+        // Add task to DOM
+        function addTaskToDOM(task) {
+          const li = document.createElement("li");
+          li.textContent = task.text;
+          li.dataset.id = Date.now(); // Use timestamp as a unique ID for each task
+          if (task.completed) {
+            li.classList.add("completed");
+          }
+
+          // Add delete button
+          const deleteButton = document.createElement("button");
+          deleteButton.textContent = "Delete";
+          deleteButton.classList.add("delete-btn");
+          li.appendChild(deleteButton);
+
+          taskList.appendChild(li);
+        }
+
+        // Toggle task completion status
+        function toggleTaskCompletion(taskId) {
+          const tasks = getTasksFromLocalStorage();
+          const task = tasks.find((t) => t.id === taskId);
+          task.completed = !task.completed;
+
+          // Update task in DOM
+          const taskElement = document.querySelector(`[data-id='${taskId}']`);
+          taskElement.classList.toggle("completed");
+
+          // Save updated tasks back to localStorage
+          localStorage.setItem("tasks", JSON.stringify(tasks));
+        }
+
+        // Delete task
+        function deleteTask(taskId) {
+          const tasks = getTasksFromLocalStorage();
+          const updatedTasks = tasks.filter((t) => t.id !== taskId);
+
+          // Remove task from DOM
+          const taskElement = document.querySelector(`[data-id='${taskId}']`);
+          taskElement.remove();
+
+          // Save updated tasks back to localStorage
+          localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -37,15 +37,17 @@
         }
 
         //save task in local storage
-        const storedTask = localStorage.setItem("savedInput", inputTaskValue);
+        let storedTask = localStorage.setItem("savedInput", inputTaskValue);
         if (storedTask) {
           console.log("Task input saved to local storage");
         }
+        /*
         //retrieve task from local storage
-        const retrievedTask = localStorage.getItem("savedTaskInput");
+        const retrievedTask = localStorage.getItem("savedInput");
         if (retrievedTask) {
           console.log("Task input retrieve from local storage");
         }
+          */
       }
 
       

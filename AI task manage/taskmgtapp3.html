@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Management App</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f9;
+      }
+
+      .container {
+        width: 400px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 24px;
+      }
+
+      input {
+        width: calc(100% - 50px);
+        padding: 10px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        padding: 10px;
+        background-color: #5c6bc0;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #3f4b94;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+      }
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        margin: 5px 0;
+        background-color: #f9f9f9;
+        border-radius: 4px;
+      }
+
+      li.completed {
+        text-decoration: line-through;
+        color: #a1a1a1;
+      }
+
+      button.delete-btn {
+        background-color: #f44336;
+      }
+
+      button.delete-btn:hover {
+        background-color: #d32f2f;
+      }
+
+      button.complete-btn {
+        background-color: #4caf50;
+      }
+
+      button.complete-btn:hover {
+        background-color: #388e3c;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Task Management</h1>
+      <input type="text" id="task-input" placeholder="Add a new task" />
+      <button id="add-task-btn">Add Task</button>
+
+      <ul id="task-list"></ul>
+    </div>
+
+    <script>
+      // Get elements
+      const taskInput = document.getElementById("task-input");
+      const addTaskButton = document.getElementById("add-task-btn");
+      const taskList = document.getElementById("task-list");
+
+      // Load tasks from local storage
+      window.onload = loadTasks;
+
+      // Add Task
+      addTaskButton.addEventListener("click", addTask);
+
+      // Function to add a task
+      function addTask() {
+        const taskText = taskInput.value.trim();
+
+        if (taskText === "") {
+          alert("Please enter a task.");
+          return;
+        }
+
+        const task = {
+          text: taskText,
+          completed: false,
+        };
+
+        saveTaskToLocalStorage(task);
+        renderTasks();
+        taskInput.value = ""; // Clear input
+      }
+
+      // Render tasks
+      function renderTasks() {
+        taskList.innerHTML = "";
+
+        const tasks = getTasksFromLocalStorage();
+
+        tasks.forEach((task, index) => {
+          const li = document.createElement("li");
+          li.classList.toggle("completed", task.completed);
+
+          li.innerHTML = `
+      <span>${task.text}</span>
+      <button class="complete-btn" onclick="toggleComplete(${index})">Complete</button>
+      <button class="delete-btn" onclick="deleteTask(${index})">Delete</button>
+    `;
+
+          taskList.appendChild(li);
+        });
+      }
+
+      // Toggle task completion
+      function toggleComplete(index) {
+        const tasks = getTasksFromLocalStorage();
+        tasks[index].completed = !tasks[index].completed;
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        renderTasks();
+      }
+
+      // Delete task
+      function deleteTask(index) {
+        const tasks = getTasksFromLocalStorage();
+        tasks.splice(index, 1);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        renderTasks();
+      }
+
+      // Save tasks to localStorage
+      function saveTaskToLocalStorage(task) {
+        const tasks = getTasksFromLocalStorage();
+        tasks.push(task);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      }
+
+      // Get tasks from localStorage
+      function getTasksFromLocalStorage() {
+        const tasks = localStorage.getItem("tasks");
+        return tasks ? JSON.parse(tasks) : [];
+      }
+
+      // Load tasks on page load
+      function loadTasks() {
+        renderTasks();
+      }
+    </script>
+  </body>
+</html>
