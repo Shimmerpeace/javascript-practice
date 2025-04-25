@@ -107,11 +107,10 @@ let prop = [2, 4, 6, 8, 10];
 let ndex = 0;
 while (ndex < prop.length) {
     console.log(prop[ndex]);
-
     ndex++;
 }
 
-let props = [2, 4, 6, 8, 10];
+
 let sum = 0;
 while (true) {
     console.log('Loop')
@@ -192,7 +191,7 @@ console.log("for loop - break statements");
 
 for (let i = 0; i < 10; i++) {
     if (i === 2) {
-        break; // exits the loop when i is = 5
+        break; // exits the loop when i is = 2
     }
     console.log(i);
 }
@@ -294,7 +293,7 @@ for (let itemz of array) {
     console.log(itemz);
 }
 
-console.log(exercise);
+console.log("exercise");
 function maxNum(num1, num2) {
     return num1 >= num2 ? num1 : num2;
 }

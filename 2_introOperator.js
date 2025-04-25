@@ -34,10 +34,15 @@ console.log(5 == "5"); // true
 console.log(0 == false); // true
 console.log(null == undefined); // true
 
-//TERNARY OPERATOR is a conditional operator that allows us to write cleaner code, often times you need to perform a comparison and store values
+//TERNARY OPERATOR is a conditional operator that allows us to write cleaner code, often times you need to 
+// perform a comparison and store values
 let age = 16;
 const canDrive = age >= 16 ? true : false;
 console.log(canDrive);
+
+let maritalStatus = 'single';
+const isMarried = maritalStatus === 'married' ? 'yes' : 'no';
+console.log(isMarried);
 
 let points = 110;
 const customerType = points > 100 ? "gold" : "silver";
@@ -97,7 +102,7 @@ let favColor = 'brown';
 let defaultColor = 'green';
 const webColor = favColor || defaultColor;
 console.log(webColor); // brown
-// if the favColor was an empty string, javascript would evaluate that to be falsy  and return the default color.
+// if the "favColor" was an empty string, javascript would evaluate that to be falsy  and return the "defaultColor".
 // Falsy term mean using logical operators with non-boolean value (such as a string or number). 
 // Falsy values consist of null, undefined, not a number (NaN), empty string, zero and false.
 // How do logical operators function when applied to non-boolean values? Logical operators are evaluated from left to right
