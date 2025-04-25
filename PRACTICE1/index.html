@@ -5,11 +5,31 @@
     <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8" />
     <title>JAVASCRIPT PRACTICE PART ONE</title>
     <style>
+    
       body {
-        background-color: peachpuff;
-        text-align: center;
-        align-items: center;
-      }
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    min-height: 100vh;
+   
+  }
+  
+  body::before {
+    content: "";
+    position: fixed; /* or absolute if you prefer */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("station.jpeg");
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5; /* Adjust transparency */
+    z-index: -1;
+    pointer-events: none; /* Ensures background is not interactive */
+  }
 
       h2 {
         font-size: 50px;
@@ -17,14 +37,7 @@
         margin-bottom: 20px;
       }
 
-      #div1, 
-      #div2, 
-      .welcome-message, 
-      #img-container,
-      #calculator {
-        background-color: cornsilk;
-        
-      }
+     
        img {
         padding: 10px;
         border-radius: 20px;

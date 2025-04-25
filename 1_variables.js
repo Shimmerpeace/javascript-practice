@@ -67,8 +67,11 @@ console.log(course);
 // then reassign it to a different data type (e.g a number or boolean) are known as dynamically typed
 
 let nachname = "Ndidi";
+console.log(nachname)
 nachname = 3;
+console.log(nachname)
 nachname = false;
+console.log(nachname)
 
 let namede = 'efeh';
 console.log(typeof namede);
@@ -120,15 +123,11 @@ console.log(child[property]);
 // array is an object, objects have key-value pair
 let prodColors = ['blue', 'green'];
 console.log(prodColors);
+console.log(prodColors[0]);
+prodColors[0] = 42;
+console.log(prodColors[0]);
+console.log(typeof prodColors);
 
-let produtColors = ['blue', 'green'];
-console.log(produtColors[0]);
-
-let productColors = ['blue', 'green'];
-productColors[0] = 42;
-console.log(productColors[0]);
-console.log(typeof productColors);
-console.log(productColors);
 
 // a useful property when working with arrays is the length property
 let peopleNames = ['andrei', 'grace', 'faith'];
@@ -152,3 +151,10 @@ function multiply(num1, num2) {
     return num1 * num2;
 }
 console.log(multiply(2, 2));
+
+function test(describe) {
+    console.log("Kids are " + describe + ".")
+}
+test("lovely")
+test("amazing")
+test("funny")
