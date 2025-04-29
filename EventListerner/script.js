@@ -15,38 +15,38 @@ btn2.addEventListener("click", () => {
 const form = document.getElementById("test-form");
 form.addEventListener("submit", handleForm);
 function handleForm(e) {
-    e.preventDefault();
-    console.log('Form submitted');
+  e.preventDefault();
+  console.log("Form submitted");
 }
 
 // addEventListener - "submit" Example 2
 const form2 = document.getElementById("test-form2");
 const input = document.getElementById("test-input");
-const formDiv = document.querySelector(".form-div")
+const formDiv = document.querySelector(".form-div");
 form2.addEventListener("submit", handleForm2);
 function handleForm2(e) {
-    e.preventDefault();
-    paragraph = document.createElement("p");
-    formDiv.appendChild(paragraph);
-    const value =  input.value;
-    paragraph.innerHTML = value;
-    console.log('Form2 submitted');
+  e.preventDefault();
+  paragraph = document.createElement("p");
+  formDiv.appendChild(paragraph);
+  const value = input.value;
+  paragraph.innerHTML = value;
+  console.log("Form2 submitted");
 }
 
-// addEventListener - "mouse over" 
+// addEventListener - "mouse over"
 let mouseCtn = document.getElementById("mouse-ctn");
-mouseCtn.addEventListener('mouseover', () => {
-    mouseCtn.textContent = " You are amazing!";
-    //mouseCtn.textContent += " You are amazing!";
-    console.log('Mouse over this element!')
-})
-
-// addEventListener - "key press" 
-document.addEventListener("keydown", (e) => {
-    console.log(`Key pressed: ${e.key}`)
+mouseCtn.addEventListener("mouseover", () => {
+  mouseCtn.textContent = " You are amazing!";
+  //mouseCtn.textContent += " You are amazing!";
+  console.log("Mouse over this element!");
 });
 
-// addEventListener - "Page load" 
+// addEventListener - "key press"
+document.addEventListener("keydown", (e) => {
+  console.log(`Key pressed: ${e.key}`);
+});
+
+// addEventListener - "Page load"
 document.addEventListener("DOMContentLoaded", () => {
-    console.log('Page loaded!')
+  console.log("Page loaded!");
 });
